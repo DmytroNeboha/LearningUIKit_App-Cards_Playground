@@ -10,11 +10,29 @@ class MyViewController : UIViewController {
     // настройка представлений сцены
     private func setupViews() {
         self.view = getRootView()
+        
         let redView = getRedView()
         let greenView = getGreenView()
+        let whiteView = getWhiteView()
+        
         set(view: greenView, toCenterOfView: redView)
+        // позиционируем белое представление с помощю свойства center
+        whiteView.center = greenView.center
+        
         self.view.addSubview(redView)
         redView.addSubview(greenView)
+        redView.addSubview(whiteView)
+    }
+    
+    
+    
+    
+    // создание представления белого цвета
+    private func getWhiteView() -> UIView {
+        let viewFrame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let view = UIView(frame: viewFrame)
+        view.backgroundColor = .white
+        return view
     }
     
     // создание корневого представления
@@ -39,6 +57,9 @@ class MyViewController : UIViewController {
         view.backgroundColor = .green
         return view
     }
+    
+    
+    
     
     private func set(view moveView: UIView, toCenterOfView baseView: UIView) {
         // размеры вложеного представления

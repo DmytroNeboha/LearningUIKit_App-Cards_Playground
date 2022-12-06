@@ -14,6 +14,7 @@ class MyViewController : UIViewController {
         let redView = getRedView()
         let greenView = getGreenView()
         let whiteView = getWhiteView()
+        let pinkView = getPinkView()
         
         set(view: greenView, toCenterOfView: redView)
         // позиционируем белое представление с помощю свойства center
@@ -22,10 +23,41 @@ class MyViewController : UIViewController {
         self.view.addSubview(redView)
         redView.addSubview(greenView)
         redView.addSubview(whiteView)
+        self.view.addSubview(pinkView)
+
     }
     
     
     
+    // создание представления розового цвета
+    private func getPinkView() -> UIView {
+        let viewFrame = CGRect(x: 50, y: 400, width: 100, height: 100)
+        let view = UIView(frame: viewFrame)
+        view.backgroundColor = .systemPink
+        
+        // Толщина границы
+        view.layer.borderWidth = 5
+        // Цвет границ
+        view.layer.borderColor = UIColor.yellow.cgColor
+        // Скругление углов
+        view.layer.cornerRadius = 10
+        // Видимость тени
+        view.layer.shadowOpacity = 0.95
+        // Радиус размытия тени
+        view.layer.shadowRadius = 20
+        // Смещение тени
+        view.layer.shadowOffset = CGSize(width: 10, height: 20)
+        // Цвет тени
+        view.layer.shadowColor = UIColor.white.cgColor
+        //  Прозрачность слоя
+        view.layer.opacity = 0.7
+        // Изменение фона
+        view.layer.backgroundColor = UIColor.black.cgColor
+        view.layer.backgroundColor = UIColor.systemPink.cgColor
+        
+        
+        return view
+    }
     
     // создание представления белого цвета
     private func getWhiteView() -> UIView {

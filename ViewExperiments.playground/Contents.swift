@@ -31,7 +31,7 @@ class MyViewController : UIViewController {
     
     // создание представления розового цвета
     private func getPinkView() -> UIView {
-        let viewFrame = CGRect(x: 50, y: 400, width: 100, height: 100)
+        let viewFrame = CGRect(x: 50, y: 330, width: 100, height: 100)
         let view = UIView(frame: viewFrame)
         view.backgroundColor = .systemPink
         
@@ -67,8 +67,36 @@ class MyViewController : UIViewController {
         // добавление в иерархию слоев
         view.layer.addSublayer(layer)
         
+        
+        // вывод на консоль размеров представления
+        print(view.frame)
+        // поворот представления
+//        view.transform = CGAffineTransform(rotationAngle: .pi/4)
+        // вывод на консоль размеров представления
+        print(view.frame)
+        
+        
+        // Растяжение
+//        view.transform = CGAffineTransform(scaleX: 1.5, y: 0.7)
+        
+        // Смещение
+        view.transform = CGAffineTransform(translationX: 100, y: 5)
+        
+        // Множественное преобразования
+        view.transform = CGAffineTransform(rotationAngle: .pi/3).scaledBy(x: 2, y: 0.8).translatedBy(x: 50, y: 50)
+        
+        // Свойтсво identity - применяют в анимации когда нужно отменить действия
+        view.transform = CGAffineTransform.identity
+        
+        // Метод inverted()
+        view.transform = CGAffineTransform(rotationAngle: .pi/4).inverted()
+        
+        
         return view
     }
+    
+    
+    
     
     // создание представления белого цвета
     private func getWhiteView() -> UIView {

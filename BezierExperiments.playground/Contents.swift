@@ -87,7 +87,29 @@ class MyViewController : UIViewController {
         // создание прямоугольника
         let path2 = UIBezierPath(roundedRect: rect, byRoundingCorners: [.bottomRight, .topLeft], cornerRadii: CGSize(width: 30, height: 0))
         
-        return path2
+        
+        // Дуга
+        let centerPoint = CGPoint(x: 200, y: 200)
+        let path3 = UIBezierPath(arcCenter: centerPoint, radius: 150, startAngle: .pi/5, endAngle: .pi, clockwise: true)
+        
+        
+        // Круг
+        let path4 = UIBezierPath(arcCenter: centerPoint, radius: 150, startAngle: 0, endAngle: .pi*2, clockwise: true)
+        
+        // Овал
+        let rect5 = CGRect(x: 50, y: 50, width: 200, height: 100)
+        let path5 = UIBezierPath(ovalIn: rect5)
+        
+        
+        // Кривые
+        let path6 = UIBezierPath()
+        path6.move(to: CGPoint(x: 10, y: 10))
+        path6.addCurve(to: CGPoint(x: 200, y: 200), controlPoint1: CGPoint(x: 200, y: 20), controlPoint2: CGPoint(x: 20, y: 200))
+        
+        
+        
+        
+        return path6
     }
     
     

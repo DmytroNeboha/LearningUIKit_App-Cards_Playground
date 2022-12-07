@@ -25,11 +25,19 @@ class MyViewController : UIViewController {
         // Изменение толщины линии
         shapeLayer.lineWidth = 5
         
+        // Свойство lineCap
+        shapeLayer.lineCap = .butt
+        shapeLayer.lineCap = .square
+        shapeLayer.lineCap = .round
+        
+        // Свойство lineDashPattern
+        shapeLayer.lineDashPattern = [3, 6] 
+        
         // определение фонового цвета
         shapeLayer.fillColor = UIColor.green.cgColor
         // Чтоб убрать цвет фигуры 2 варината:
-        shapeLayer.fillColor = nil // 1 вариант
-        shapeLayer.fillColor = UIColor.clear.cgColor
+//        shapeLayer.fillColor = nil // 1 вариант
+//        shapeLayer.fillColor = UIColor.clear.cgColor
         
         
         // 3. Создание фигуры

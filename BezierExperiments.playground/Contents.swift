@@ -31,13 +31,18 @@ class MyViewController : UIViewController {
         shapeLayer.lineCap = .round
         
         // Свойство lineDashPattern
-        shapeLayer.lineDashPattern = [3, 6] 
+//        shapeLayer.lineDashPattern = [3, 6]
         
         // определение фонового цвета
         shapeLayer.fillColor = UIColor.green.cgColor
         // Чтоб убрать цвет фигуры 2 варината:
 //        shapeLayer.fillColor = nil // 1 вариант
 //        shapeLayer.fillColor = UIColor.clear.cgColor
+        
+        
+        // Свойство strokeStart и strokeEnd
+//        shapeLayer.strokeStart = 0.6
+        shapeLayer.strokeEnd = 0.85
         
         
         // 3. Создание фигуры

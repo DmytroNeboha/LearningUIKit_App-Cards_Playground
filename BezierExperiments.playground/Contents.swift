@@ -42,7 +42,7 @@ class MyViewController : UIViewController {
         
         // Свойство strokeStart и strokeEnd
 //        shapeLayer.strokeStart = 0.6
-        shapeLayer.strokeEnd = 0.85
+//        shapeLayer.strokeEnd = 0.85
         
         
         // 3. Создание фигуры
@@ -59,6 +59,9 @@ class MyViewController : UIViewController {
         
         path.addLine(to: CGPoint(x: 150, y: 50))
         path.addLine(to: CGPoint(x: 150, y: 150))
+        
+        // завершение фигуры (3-я линия)
+        path.close()
         return path
     }
     

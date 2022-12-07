@@ -44,6 +44,9 @@ class MyViewController : UIViewController {
 //        shapeLayer.strokeStart = 0.6
 //        shapeLayer.strokeEnd = 0.85
         
+        // свойство lineJoin
+        shapeLayer.lineJoin = .round
+                
         
         // 3. Создание фигуры
         shapeLayer.path = getPath().cgPath
@@ -56,13 +59,35 @@ class MyViewController : UIViewController {
     private func getPath() -> UIBezierPath {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 50, y: 50))
-        
         path.addLine(to: CGPoint(x: 150, y: 50))
         path.addLine(to: CGPoint(x: 150, y: 150))
-        
         // завершение фигуры (3-я линия)
         path.close()
-        return path
+        
+        
+        
+        // Многосегментные пути
+        // создание второго треугольника
+        path.move(to: CGPoint(x: 50, y: 70))
+        path.addLine(to: CGPoint(x: 150, y: 170))
+        path.addLine(to: CGPoint(x: 50, y: 170))
+        path.close()
+        
+        
+        let path1 = UIBezierPath()
+        path.move(to: CGPoint(x: 10, y: 210))
+        path.addLine(to: CGPoint(x: 210, y: 210))
+        path.addLine(to: CGPoint(x: 210, y: 310))
+        path.addLine(to: CGPoint(x: 10, y: 310))
+        path.close()
+        
+        // создание сущности "Прямоугольник"
+        let rect = CGRect(x: 10, y: 310, width: 200, height: 100)
+        
+        // создание прямоугольника
+        let path2 = UIBezierPath(roundedRect: rect, byRoundingCorners: [.bottomRight, .topLeft], cornerRadii: CGSize(width: 30, height: 0))
+        
+        return path2
     }
     
     

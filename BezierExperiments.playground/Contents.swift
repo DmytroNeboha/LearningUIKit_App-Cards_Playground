@@ -25,6 +25,13 @@ class MyViewController : UIViewController {
         // Изменение толщины линии
         shapeLayer.lineWidth = 5
         
+        // определение фонового цвета
+        shapeLayer.fillColor = UIColor.green.cgColor
+        // Чтоб убрать цвет фигуры 2 варината:
+        shapeLayer.fillColor = nil // 1 вариант
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        
+        
         // 3. Создание фигуры
         shapeLayer.path = getPath().cgPath
     }

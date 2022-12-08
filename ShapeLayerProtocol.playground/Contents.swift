@@ -228,7 +228,11 @@ protocol FlippableView: UIView {
 // 18.3 Создание кастомного представления для игральной карточки
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     var cornerRadius = 20
-    var isFlipped: Bool = false
+    var isFlipped: Bool = false {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     var flipCompletionHandler: ((FlippableView) -> Void)?
     var color: UIColor!
     
@@ -292,6 +296,15 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         super.init(frame: frame)
         self.color = color
         
+        setupBorders()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        // удалякм добавленные ранее дочерние представления
+        backSideView.removeFromSuperview()
+        frontSideView.removeFromSuperview()
+        
+        // добавляем новые представления
         if isFlipped {
             self.addSubview(backSideView)
             self.addSubview(frontSideView)
@@ -299,8 +312,6 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
             self.addSubview(frontSideView)
             self.addSubview(backSideView)
         }
-        
-        setupBorders()
     }
     
     required init?(coder: NSCoder) {

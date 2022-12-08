@@ -26,6 +26,7 @@
 		551A9807293E6384007EC570 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554F31112940CB5700C70678 /* BezierExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BezierExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		555F25BF293E98A00079CBAE /* ViewExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		558CE6E42941FDD300B51E99 /* ShapeLayerProtocol.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ShapeLayerProtocol.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +43,7 @@
 		551A97ED293E6382007EC570 = {
 			isa = PBXGroup;
 			children = (
+				558CE6E42941FDD300B51E99 /* ShapeLayerProtocol.playground */,
 				554F31112940CB5700C70678 /* BezierExperiments.playground */,
 				555F25BF293E98A00079CBAE /* ViewExperiments.playground */,
 				551A97F8293E6382007EC570 /* Cards */,

@@ -7,8 +7,14 @@ class MyViewController : UIViewController {
         view.backgroundColor = .white
         self.view = view
         
+        // игральная карточка рубашкой вверх
         let firstCardView = CardView<CircleShape>(frame: CGRect(x: 0, y: 0, width: 120, height: 150), color: .red)
         self.view.addSubview(firstCardView)
+        
+        // игральная карточка лицевой стороной вверх
+        let secondCardView = CardView<CircleShape>(frame: CGRect(x: 200, y: 0, width: 120, height: 150), color: .red)
+        self.view.addSubview(secondCardView)
+        secondCardView.isFlipped = true
         
 //        // Круг
 //        view.layer.addSublayer(CircleShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
@@ -222,7 +228,7 @@ protocol FlippableView: UIView {
 // 18.3 Создание кастомного представления для игральной карточки
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     var cornerRadius = 20
-    var isFlipped: Bool = true
+    var isFlipped: Bool = false
     var flipCompletionHandler: ((FlippableView) -> Void)?
     var color: UIColor!
     

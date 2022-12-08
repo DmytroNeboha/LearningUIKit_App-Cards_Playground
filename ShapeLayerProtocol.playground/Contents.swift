@@ -221,9 +221,9 @@ protocol FlippableView: UIView {
 
 // 18.3 Создание кастомного представления для игральной карточки
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
+    var cornerRadius = 20
     var isFlipped: Bool = true
     var flipCompletionHandler: ((FlippableView) -> Void)?
-    func flip() {}
     var color: UIColor!
     
     // внутренний отступ представления
@@ -233,6 +233,10 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     lazy var frontSideView: UIView = self.getFrontSideView()
     // представление с обратной стороны
     lazy var backSideView: UIView = self.getBackSideView()
+    
+    
+    func flip() {}
+
     
     // возвращает представление для лицевой стороны карточки
     private func getFrontSideView() -> UIView {
@@ -270,6 +274,13 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         return view
     }
     
+    // настройка границ
+    private func setupBorders() {
+        self.clipsToBounds = true
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+        self.layer.borderWidth = 2
+        self.layer.borderColor = UIColor.black.cgColor
+    }
     
     init(frame: CGRect, color: UIColor) {
         super.init(frame: frame)
@@ -282,6 +293,8 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
             self.addSubview(frontSideView)
             self.addSubview(backSideView)
         }
+        
+        setupBorders()
     }
     
     required init?(coder: NSCoder) {

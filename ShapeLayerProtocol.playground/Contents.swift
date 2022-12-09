@@ -245,7 +245,16 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     lazy var backSideView: UIView = self.getBackSideView()
     
     
-    func flip() {}
+    init(frame: CGRect, color: UIColor) {
+        super.init(frame: frame)
+        self.color = color
+        
+        setupBorders()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     
     // возвращает представление для лицевой стороны карточки
@@ -285,19 +294,6 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         }
     
     
-    // Реализуем обработку касанием
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(self.responderChain())
-    }
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print("touchesMoved Card")
-//    }
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print("touchesEnded Card")
-//    }
-    
-    
     
     // настройка границ
     private func setupBorders() {
@@ -307,12 +303,6 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         self.layer.borderColor = UIColor.black.cgColor
     }
     
-    init(frame: CGRect, color: UIColor) {
-        super.init(frame: frame)
-        self.color = color
-        
-        setupBorders()
-    }
     
     override func draw(_ rect: CGRect) {
         // удалякм добавленные ранее дочерние представления
@@ -329,12 +319,27 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    
+    // 19.4 Пример обработки событий. Перемещение игральных карточек.
+    // точка привязки
+    private var anchorPoint1: CGPoint = CGPoint(x: 0, y: 0)
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        anchorPoint.x = touches.first!.location(in: window).x - frame.minX
+        anchorPoint.y = touches.first!.location(in: window).y - frame.minY
     }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.frame.origin.x = touches.first!.location(in: window).x - anchorPoint.x
+        self.frame.origin.y = touches.first!.location(in: window).y - anchorPoint.y
+    }
+    
+    
+    func flip() {}
 }
 
 
+// 19.3 Responder Chaine
 extension UIResponder {
     func responderChain() -> String {
         guard let next = next else {

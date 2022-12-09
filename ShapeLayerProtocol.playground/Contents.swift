@@ -288,14 +288,14 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     // Реализуем обработку касанием
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesBegan Card")
+        print(self.responderChain())
     }
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesMoved Card")
-    }
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesEnded Card")
-    }
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print("touchesMoved Card")
+//    }
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print("touchesEnded Card")
+//    }
     
     
     
@@ -335,7 +335,14 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
 }
 
 
-
+extension UIResponder {
+    func responderChain() -> String {
+        guard let next = next else {
+            return String(describing: Self.self)
+        }
+        return String(describing: Self.self) + " -> " + next.responderChain()
+    }
+}
 
 
 

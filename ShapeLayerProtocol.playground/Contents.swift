@@ -322,16 +322,37 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     
     // 19.4 Пример обработки событий. Перемещение игральных карточек.
     // точка привязки
-    private var anchorPoint1: CGPoint = CGPoint(x: 0, y: 0)
+    var anchorPointP: CGPoint = CGPoint(x: 0, y: 0)
+    
+    // записываем исходные координаты игральной карточки
+    private var startTouchPoint: CGPoint!
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        anchorPoint.x = touches.first!.location(in: window).x - frame.minX
-        anchorPoint.y = touches.first!.location(in: window).y - frame.minY
+        // изменяем координаты точки привязки
+        anchorPointP.x = touches.first!.location(in: window).x - frame.minX
+        anchorPointP.y = touches.first!.location(in: window).y - frame.minY
+        
+        // сохраняем исходные координаты
+        startTouchPoint = frame.origin
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.frame.origin.x = touches.first!.location(in: window).x - anchorPoint.x
-        self.frame.origin.y = touches.first!.location(in: window).y - anchorPoint.y
+        self.frame.origin.x = touches.first!.location(in: window).x - anchorPointP.x
+        self.frame.origin.y = touches.first!.location(in: window).y - anchorPointP.y
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // анимировано возвращает карточку в исходную позицию
+        UIView.animate(withDuration: 0.5) {
+            self.frame.origin = self.startTouchPoint
+            
+            // переворачиваем представление
+            if self.transform.isIdentity {
+                self.transform = CGAffineTransform(rotationAngle: .pi)
+            } else {
+                self.transform = .identity
+            }
+        }
     }
     
     
